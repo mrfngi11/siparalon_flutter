@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:siparalon_flutter/home-page.dart';
-
-  import 'package:siparalon_flutter/login-page.dart';
+import 'package:siparalon_flutter/login-page.dart';
 import 'package:siparalon_flutter/simpan-page.dart';
 
   void main() {
@@ -17,9 +16,9 @@ import 'package:siparalon_flutter/simpan-page.dart';
 
   class _MyAppState extends State<MyApp> {
     @override
-    Widget build( BuildContext context) {
+    Widget build(BuildContext context) {
       return MaterialApp(
-        home: SimpanPage(),
+        home: LoginPage(),
       );
     }
   }

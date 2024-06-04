@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siparalon_flutter/home-page.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -24,7 +25,11 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20),
             Text("Password"),
             TextField(),
-            Center(child: ElevatedButton(onPressed: () {}, child: Text("MASUK")))
+            Center(child: ElevatedButton(onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => HomePage()))
+                  .then((value) => (value));
+            }, child: Text("MASUK")))
             ],
         ),
       )),

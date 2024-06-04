@@ -38,11 +38,22 @@ class _SimpanPageState extends State<SimpanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<LocationData>(
+      appBar: AppBar(iconTheme: IconThemeData(color: Colors.black), 
+      title: Text("Presensi"),
+      ),
+      body: FutureBuilder<LocationData?>(
         future: _currentLocation(),
         builder: (BuildContext context, AsyncSnapshot<LocationData?> snapshot) {
-          if (snapshot.hasData) {
-            final LocationData? currentLocation = snapshot.data;
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error: ${snapshot.error}'),
+            );
+          } else if (snapshot.hasData && snapshot.data != null) {
+            final LocationData currentLocation = snapshot.data!;
             return SafeArea(
               child: Column(
                 children: [
@@ -52,22 +63,38 @@ class _SimpanPageState extends State<SimpanPage> {
                       layers: [
                         MapTileLayer(
                           initialFocalLatLng: MapLatLng(
-                            currentLocation!.latitude!,
+                            currentLocation.latitude!,
                             currentLocation.longitude!,
                           ),
                           initialZoomLevel: 15,
                           initialMarkersCount: 1,
                           urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                          markerBuilder: (BuildContext context, int index) {
+                            return MapMarker(
+                              latitude: currentLocation.latitude!,
+                              longitude: currentLocation.longitude!,
+                              child: Icon(
+                                Icons.location_on,
+                                color: Colors.red,
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
                   ),
+                  SizedBox(
+                      height: 20,
+                  ),
+                  ElevatedButton(onPressed: () {
+
+                  }, child: Text("Simpan Presensi"))
                 ],
               ),
             );
           } else {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Text('Unable to determine location'),
             );
           }
         },
