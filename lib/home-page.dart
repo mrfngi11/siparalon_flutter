@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:siparalon_flutter/simpan-page.dart';
 
 class HomePage extends StatefulWidget {
     const HomePage({Key? key}) : super (key: key);
@@ -102,7 +103,11 @@ class HomePage extends StatefulWidget {
           ],
           ),
           )),
-          floatingActionButton: FloatingActionButton(onPressed: () {}, 
+          floatingActionButton: FloatingActionButton(onPressed: () {
+            Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => SimpanPage()))
+                  .then((value) => (value));
+          }, 
           child: Icon(Icons.add),),
       );
     } 

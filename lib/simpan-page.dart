@@ -38,6 +38,10 @@ class _SimpanPageState extends State<SimpanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text("Presensi"),
+      ),
       body: FutureBuilder<LocationData?>(
         future: _currentLocation(),
         builder: (BuildContext context, AsyncSnapshot<LocationData?> snapshot) {
@@ -80,6 +84,13 @@ class _SimpanPageState extends State<SimpanPage> {
                       ],
                     ),
                   ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Simpan Presensi Logic
+                    },
+                    child: Text("Simpan Presensi"),
+                  )
                 ],
               ),
             );

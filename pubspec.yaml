@@ -38,7 +38,6 @@ dependencies:
   location: ^6.0.2
   syncfusion_flutter_maps: ^25.2.5
   http: ^1.2.1
-  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
